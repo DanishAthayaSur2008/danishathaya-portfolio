@@ -260,73 +260,73 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================
-// 9. NETLIFY SERVERLESS CONFIG
-// ==========================================
-// API Key sekarang aman disimpan di dashboard Netlify, bukan di sini lagi!
-const NETLIFY_FUNCTION_URL = "/.netlify/functions/send-email";
+  // 9. NETLIFY SERVERLESS CONFIG
+  // ==========================================
+  // API Key sekarang aman disimpan di dashboard Netlify, bukan di sini lagi!
+  const NETLIFY_FUNCTION_URL = "/.netlify/functions/send-email";
 
-// ==========================================
-// 10. CONTACT FORM HANDLER (NETLIFY + RESEND)
-// ==========================================
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = document.getElementById("submitBtn");
-  const form = e.target;
+  // ==========================================
+  // 10. CONTACT FORM HANDLER (NETLIFY + RESEND)
+  // ==========================================
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById("submitBtn");
+    const form = e.target;
 
-  const nameEl = form.querySelector('input[type="text"]');
-  const emailEl = form.querySelector('input[type="email"]');
-  const msgEl = form.querySelector("textarea");
+    const nameEl = form.querySelector('input[type="text"]');
+    const emailEl = form.querySelector('input[type="email"]');
+    const msgEl = form.querySelector("textarea");
 
-  if (!btn || !nameEl || !emailEl || !msgEl) return;
+    if (!btn || !nameEl || !emailEl || !msgEl) return;
 
-  btn.textContent = "> TRANSMITTING...";
-  btn.disabled = true;
+    btn.textContent = "> TRANSMITTING...";
+    btn.disabled = true;
 
-  // Mengirim data ke Netlify Serverless Function kamu
-  fetch(NETLIFY_FUNCTION_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: nameEl.value,
-      email: emailEl.value,
-      message: msgEl.value,
+    // Mengirim data ke Netlify Serverless Function kamu
+    fetch(NETLIFY_FUNCTION_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: nameEl.value,
+        email: emailEl.value,
+        message: msgEl.value,
+      }),
     })
-  })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Serverless Function error");
-    }
-    return response.json();
-  })
-  .then(() => {
-    btn.textContent = "> MESSAGE_SENT ✓";
-    btn.style.background = "var(--green)"; // Diubah ke green agar estetik tanda sukses
-    form.reset();
-    setTimeout(() => {
-      btn.textContent = "→ SEND_MESSAGE";
-      btn.disabled = false;
-      btn.style.background = "";
-    }, 3000);
-  })
-  .catch((err) => {
-    console.error("Netlify Function error:", err);
-    btn.textContent = "> ERROR — TRY AGAIN";
-    btn.style.background = "var(--red)";
-    btn.disabled = false;
-    setTimeout(() => {
-      btn.textContent = "→ SEND_MESSAGE";
-      btn.style.background = "";
-    }, 3000);
-  });
-}
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Serverless Function error");
+        }
+        return response.json();
+      })
+      .then(() => {
+        btn.textContent = "> MESSAGE_SENT ✓";
+        btn.style.background = "var(--green)"; // Diubah ke green agar estetik tanda sukses
+        form.reset();
+        setTimeout(() => {
+          btn.textContent = "→ SEND_MESSAGE";
+          btn.disabled = false;
+          btn.style.background = "";
+        }, 3000);
+      })
+      .catch((err) => {
+        console.error("Netlify Function error:", err);
+        btn.textContent = "> ERROR — TRY AGAIN";
+        btn.style.background = "var(--red)";
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.textContent = "→ SEND_MESSAGE";
+          btn.style.background = "";
+        }, 3000);
+      });
+  }
 
-// Daftarkan Event Listener di paling akhir agar fungsi handleSubmit sudah siap dieksekusi
-const contactForm = document.querySelector(".contact-form");
-if (contactForm) {
-  contactForm.addEventListener("submit", handleSubmit);
-}
+  // Daftarkan Event Listener di paling akhir agar fungsi handleSubmit sudah siap dieksekusi
+  const contactForm = document.querySelector(".contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", handleSubmit);
+  }
 
   // PDF Download (base64 embedded)
   const CV_BASE64 =
