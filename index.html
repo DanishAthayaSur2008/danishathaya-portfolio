@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danish Athaya Natasurendra — Cyber Security</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <style>
+      /* 1. Sembunyikan Kursor Kustom pada Perangkat HP/Tablet agar tidak macet/lag */
+      @media (max-width: 768px) or ((pointer: coarse) and (not (any-pointer: fine))) {
+        #cursor,
+        #cursor-ring {
+          display: none !important;
+        }
+        body {
+          cursor: auto !important; /* Mengembalikan kursor panah bawaan sistem khusus di HP/Tablet */
+        }
+      }
+
+      /* 2. Akselerasi Hardware GPU untuk kelancaran Animasi Marquee, Scroll Reveal, dan Kursor */
+      .marquee-track,
+      .reveal,
+      #cursor,
+      #cursor-ring {
+        will-change: transform, opacity;
+        transform: translate3d(0, 0, 0);
+      }
+
+      /* 3. Mencegah Text-Shaking/Stuttering pada Efek Glitch Teks */
+      .glitch {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      /* 4. Optimisasi Rendering Preloader Saat Pertamakali Dimuat */
+      #preloader {
+        contain: paint;
+      }
+
+      /* 5. Memperhalus Perilaku Scrolling Anchor Links */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <div id="preloader">
+      <div class="pre-logo"><span>[</span> DNS.ATHAYAN <span>]</span></div>
+      <div class="pre-lines" id="preLines"></div>
+      <div class="pre-bar">
+        <div class="pre-bar-fill" id="preBar"></div>
+      </div>
+      <div class="pre-pct" id="prePct">0%</div>
+    </div>
+
+    <nav>
+      <a href="#hero" class="nav-logo">
+        <span class="nav-logo-bracket">[</span>DNS<span class="nav-logo-bracket"
+          >]</span
+        >
+      </a>
+      <ul class="nav-links">
+        <li>
+          <a href="#about"><span class="num">01.</span>ABOUT</a>
+        </li>
+        <li>
+          <a href="#skills"><span class="num">02.</span>SKILLS</a>
+        </li>
+        <li>
+          <a href="#experience"><span class="num">03.</span>EXPERIENCE</a>
+        </li>
+        <li>
+          <a href="#org"><span class="num">04.</span>ORG</a>
+        </li>
+        <li>
+          <a href="#contact"><span class="num">05.</span>CONTACT</a>
+        </li>
+      </ul>
+      <div class="nav-controls">
+        <div class="nav-status">
+          <div class="status-dot"></div>
+          ACTIVE
+        </div>
+        <button class="theme-btn" id="themeToggle">[ LIGHT ]</button>
+        <div class="burger" id="burger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="closeMobile()">01. ABOUT</a>
+      <a href="#skills" onclick="closeMobile()">02. SKILLS</a>
+      <a href="#experience" onclick="closeMobile()">03. EXPERIENCE</a>
+      <a href="#org" onclick="closeMobile()">04. ORGANIZATION</a>
+      <a href="#contact" onclick="closeMobile()">05. CONTACT</a>
+    </div>
+
+    <main>
+      <section id="hero">
+        <div class="hero-badge">
+          <div
+            class="status-dot"
+            style="width: 5px; height: 5px; animation: none"
+          ></div>
+          CYBER SECURITY · PENETRATION TESTING · WEB3
+        </div>
+        <h1 class="hero-name">
+          <span class="glitch" data-text="DANISH">DANISH</span>
+          <span class="line2">ATHAYA</span>
+        </h1>
+        <p class="hero-role">
+          Network &amp; Application Information Systems — SMK TI BAZMA
+        </p>
+        <p class="hero-bio">
+          Specializing in penetration testing, network security, and OSINT to
+          identify vulnerabilities and protect digital assets. Deeply engaged in
+          the DeFi and Web3 ecosystems, applying technical and fundamental
+          analysis to navigate macro-micro financial markets.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">→ GET IN TOUCH</a>
+          <a href="#experience" class="btn-outline">VIEW EXPERIENCE</a>
+          <a
+            id="downloadCvBtn"
+            class="btn-download"
+            href="#"
+            download="CV_Danish_Athaya_Natasurendra.pdf"
+            >↓ DOWNLOAD CV</a
+          >
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">CTF EVENTS</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">TOOL STACKS</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">2+</span>
+            <span class="stat-label">YEARS ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="hero-terminal">
+          <div class="term-bar">
+            <div class="term-dot r"></div>
+            <div class="term-dot y"></div>
+            <div class="term-dot g"></div>
+            <span class="term-title">danish@kali:~</span>
+          </div>
+          <div class="term-body" id="termBody">
+            <div>
+              <span class="term-prompt">$</span>
+              <span class="term-out">whoami</span>
+            </div>
+            <div class="term-out" id="t1" style="opacity: 0">
+              danish.athayan
+            </div>
+            <div id="t2" style="opacity: 0">
+              <span class="term-prompt">$</span>
+              <span class="term-out">cat skills.txt</span>
+            </div>
+            <div class="term-hl" id="t3" style="opacity: 0">
+              → Penetration Testing
+            </div>
+            <div class="term-hl" id="t4" style="opacity: 0">
+              → Network Security
+            </div>
+            <div class="term-hl" id="t5" style="opacity: 0">
+              → OSINT Framework
+            </div>
+            <div class="term-hl" id="t6" style="opacity: 0">→ Web3 / DeFi</div>
+            <div id="t7" style="opacity: 0">
+              <span class="term-prompt">$</span>
+              <span class="term-out">nmap -sV localhost</span>
+            </div>
+            <div class="term-blue" id="t8" style="opacity: 0">
+              Starting Nmap scan...
+            </div>
+            <div class="term-blue" id="t9" style="opacity: 0">
+              PORT 22/tcp ssh OpenSSH
+            </div>
+            <div class="term-blue" id="t10" style="opacity: 0">
+              PORT 80/tcp http Next.js
+            </div>
+            <div id="t11" style="opacity: 0">
+              <span class="term-prompt">$</span>
+              <span class="term-out">echo "STAY CURIOUS."</span>
+            </div>
+            <div
+              class="term-out"
+              id="t12"
+              style="opacity: 0; color: var(--green)"
+            >
+              STAY CURIOUS. <span class="term-cursor"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee-section">
+        <div class="marquee-track" id="marqueeTrack"></div>
+      </div>
+
+      <section id="about">
+        <div class="section-header reveal">
+          <span class="section-tag">// 01. ABOUT</span>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-grid">
+          <div class="reveal">
+            <h2 class="section-title" style="margin-bottom: 28px">
+              Who I <span class="hl">Am.</span>
+            </h2>
+            <div class="about-text">
+              <p>
+                I'm a
+                <span class="about-highlight"
+                  >Network and Application Information Systems</span
+                >
+                student at SMK TI BAZMA with a strong technical focus on Cyber
+                Security and Blockchain.
+              </p>
+              <p>
+                My expertise spans
+                <span class="about-highlight"
+                  >penetration testing, network security, and OSINT</span
+                >
+                — uncovering vulnerabilities before adversaries can exploit
+                them. Every system has a weakness; my job is to find it first.
+              </p>
+              <p>
+                Beyond the terminal, I operate at the intersection of technical
+                security and the DeFi/Web3 frontier, applying fundamental and
+                technical analysis to navigate decentralized financial markets.
+              </p>
+              <p>
+                I also bring creative depth to the table — from
+                <span class="about-highlight">video mapping</span> using
+                Resolume Arena to live sound production via DAW, I bridge
+                technology and art in ways most security folks don't.
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div class="about-panel">
+              <div class="panel-title">// IDENTIFICATION</div>
+              <div class="info-row">
+                <span class="info-key">NAME</span>
+                <span class="info-val">Danish Athaya Natasurendra</span>
+              </div>
+              <div class="info-row">
+                <span class="info-key">HANDLE</span>
+                <span class="info-val" style="color: var(--green)"
+                  >@dns.athayan</span
+                >
+              </div>
+              <div class="info-row">
+                <span class="info-key">EMAIL</span>
+                <span class="info-val"
+                  ><a href="mailto:danish.athayan@gmail.com"
+                    >danish.athayan@gmail.com</a
+                  ></span
+                >
+              </div>
+              <div class="info-row">
+                <span class="info-key">PHONE</span>
+                <span class="info-val"
+                  ><a href="tel:+6281917121615">+62 819-1712-1615</a></span
+                >
+              </div>
+              <div class="info-row">
+                <span class="info-key">STATUS</span>
+                <span class="info-val" style="color: var(--green)"
+                  >● ACTIVE</span
+                >
+              </div>
+              <div class="info-row">
+                <span class="info-key">INSTITUTION</span>
+                <span class="info-val">SMK TI BAZMA</span>
+              </div>
+              <div class="info-row">
+                <span class="info-key">FIELD</span>
+                <span class="info-val">Info. Systems, Network &amp; Apps</span>
+              </div>
+              <div class="info-row">
+                <span class="info-key">SPECIALIZATION</span>
+                <span class="info-val">Cyber Security · Blockchain</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" style="background: var(--bg2)">
+        <div class="section-header reveal">
+          <span class="section-tag">// 02. SKILLS</span>
+          <div class="section-line"></div>
+        </div>
+        <h2 class="section-title reveal" style="margin-bottom: 32px">
+          Core <span class="hl">Capabilities.</span>
+        </h2>
+        <div class="key-skills reveal">
+          <span class="key-skill">Programming</span>
+          <span class="key-skill">Network Fundamental</span>
+          <span class="key-skill">Linux Administrator</span>
+          <span class="key-skill">Security Researcher</span>
+          <span class="key-skill">Penetration Testing</span>
+          <span class="key-skill">Ethical Hacking</span>
+          <span class="key-skill">Hacktivist</span>
+          <span class="key-skill">Digital Audio Workstation</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <div class="skill-cat">SECURITY &amp; RESEARCH</div>
+            <div class="skill-items">
+              <span class="skill-tag">Kali Linux</span>
+              <span class="skill-tag">Nmap</span>
+              <span class="skill-tag">Burp Suite</span>
+              <span class="skill-tag">Metasploit</span>
+              <span class="skill-tag">Wireshark</span>
+              <span class="skill-tag">OSINT Framework</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-cat">WEB DEVELOPMENT</div>
+            <div class="skill-items">
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">Laravel</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">Postman</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-cat">CREATIVE &amp; MULTIMEDIA</div>
+            <div class="skill-items">
+              <span class="skill-tag">Resolume Arena</span>
+              <span class="skill-tag">FL Studio</span>
+              <span class="skill-tag">Video Mapping</span>
+              <span class="skill-tag">Canva</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-cat">INFRASTRUCTURE &amp; DEVOPS</div>
+            <div class="skill-items">
+              <span class="skill-tag">Linux Terminal</span>
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">Cisco</span>
+              <span class="skill-tag">MikroTik</span>
+              <span class="skill-tag">Network Config</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-cat">FINANCIAL ANALYSIS</div>
+            <div class="skill-items">
+              <span class="skill-tag">TradingView</span>
+              <span class="skill-tag">Dexscreener</span>
+              <span class="skill-tag">Web3 Protocols</span>
+              <span class="skill-tag">DeFi</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="section-header reveal">
+          <span class="section-tag">// 03. EXPERIENCE</span>
+          <div class="section-line"></div>
+        </div>
+        <h2 class="section-title reveal" style="margin-bottom: 48px">
+          Field <span class="hl">Record.</span>
+        </h2>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="tl-date">SEPT — NOV 2025</div>
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-type">DEVELOPMENT</div>
+              <div class="tl-role">FrontEnd Developer — SPMB</div>
+              <p class="tl-desc">
+                Built the Next.js administrative dashboard for the New Student
+                Admission System, automating applicant data management and
+                enhancing process transparency. Stack: Next.js, Express.js,
+                MySQL.
+              </p>
+              <a
+                href="https://spmb.smktibazma.sch.id"
+                class="tl-ref"
+                target="_blank"
+                >↗ spmb.smktibazma.sch.id</a
+              >
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">FEB 2025</div>
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-type">DATABASE</div>
+              <div class="tl-role">
+                Database Management — Exion (Extracurricular Information)
+              </div>
+              <p class="tl-desc">
+                Optimized database architecture for a centralized activity hub,
+                ensuring high-speed data retrieval and seamless registration for
+                the student body.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">NOV 2025</div>
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-type amber">CREATIVE</div>
+              <div class="tl-role">
+                Video Mapping Operator — SMK TI BAZMA Event Technical Production
+              </div>
+              <p class="tl-desc">
+                Designed dynamic visual environments using Resolume Arena,
+                transforming event backdrops through creative projector-based
+                mapping techniques.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">2024 — PRESENT</div>
+            <div
+              class="tl-dot"
+              style="background: var(--amber); box-shadow: 0 0 8px var(--amber)"
+            ></div>
+            <div>
+              <div class="tl-type amber">CREATIVE</div>
+              <div class="tl-role">
+                Sound Technician — SMK TI BAZMA Event Technical Production
+              </div>
+              <p class="tl-desc">
+                Managed professional audio-visual setups, including PA systems
+                and Digital Audio Workstations (DAW), overseeing the technical
+                execution of major school events to ensure optimal sound quality
+                and seamless live production.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">DEC 2024</div>
+            <div
+              class="tl-dot"
+              style="background: var(--blue); box-shadow: 0 0 8px var(--blue)"
+            ></div>
+            <div>
+              <div class="tl-type blue">CTF</div>
+              <div class="tl-role">CTF Participant — IntechFest 2025</div>
+              <p class="tl-desc">
+                Competed in a national-level technology festival, resolving
+                diverse security vulnerabilities under high-pressure competitive
+                conditions.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">AUG 2024</div>
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-type">SEMINAR</div>
+              <div class="tl-role">Cyber Security Awareness Seminar</div>
+              <p class="tl-desc">
+                Acquired advanced industry insights into the identification and
+                prevention of modern cyber crimes, focusing on implementing
+                proactive threat mitigation strategies and maintaining robust
+                digital safety standards.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">JUNE 2024</div>
+            <div
+              class="tl-dot"
+              style="background: var(--blue); box-shadow: 0 0 8px var(--blue)"
+            ></div>
+            <div>
+              <div class="tl-type blue">CTF</div>
+              <div class="tl-role">Bee-CTF Participant — BINUS University</div>
+              <p class="tl-desc">
+                Qualified through the competitive preliminary stage by solving
+                complex challenges in Web Hacking and Cryptography,
+                demonstrating advanced analytical security skills.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="org" style="background: var(--bg2)">
+        <div class="section-header reveal">
+          <span class="section-tag">// 04. ORGANIZATION</span>
+          <div class="section-line"></div>
+        </div>
+        <h2 class="section-title reveal" style="margin-bottom: 40px">
+          Leadership &amp; <span class="hl">Community.</span>
+        </h2>
+        <div class="org-grid">
+          <div class="org-card reveal">
+            <div class="org-period">DEC 2024 — OCT 2025</div>
+            <div class="org-role">
+              Head of Security, Health &amp; Environment Division
+            </div>
+            <div
+              style="
+                font-size: 10px;
+                color: var(--green);
+                letter-spacing: 2px;
+                margin-bottom: 12px;
+                font-weight: 600;
+              "
+            >
+              SMK TI BAZMA STUDENT COUNCIL
+            </div>
+            <p class="org-desc">
+              Led a dedicated team to enforce school-wide discipline and hygiene
+              standards, ensuring a secure and organized environment for all
+              students through consistent monitoring and leadership.
+            </p>
+          </div>
+
+          <div class="org-card reveal">
+            <div class="org-period">SEPT 2023 — NOV 2024</div>
+            <div class="org-role">
+              Member of Sanitation &amp; Environment Division
+            </div>
+            <div
+              style="
+                font-size: 10px;
+                color: var(--green);
+                letter-spacing: 2px;
+                margin-bottom: 12px;
+                font-weight: 600;
+              "
+            >
+              SMK TI BAZMA STUDENT COUNCIL
+            </div>
+            <p class="org-desc">
+              Initiated and managed environmental programs to maintain school
+              cleanliness standards, coordinating team schedules and fostering
+              student awareness regarding waste management and sanitation.
+            </p>
+          </div>
+
+          <div class="org-card reveal">
+            <div class="org-period">MAR 2024 — FEB 2025</div>
+            <div class="org-role">Member of FOSJABAR J5</div>
+            <div
+              style="
+                font-size: 10px;
+                color: var(--amber);
+                letter-spacing: 2px;
+                margin-bottom: 12px;
+                font-weight: 600;
+              "
+            >
+              REGIONAL STUDENT FORUM · WEST JAVA
+            </div>
+            <p class="org-desc">
+              Collaborated with a regional student forum on various
+              technological initiatives, driving impactful community programs
+              and fostering digital literacy among students across the West Java
+              region.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-header reveal">
+          <span class="section-tag">// 05. CONTACT</span>
+          <div class="section-line"></div>
+        </div>
+        <h2 class="section-title reveal" style="margin-bottom: 48px">
+          Open <span class="hl">Channel.</span>
+        </h2>
+        <div class="contact-grid">
+          <div class="reveal">
+            <p class="contact-intro">
+              Available for security consulting, collaborative projects, or just
+              a conversation about the latest exploit. Ping me through any
+              channel below — response time usually under 24h.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:danish.athayan@gmail.com" class="contact-link">
+                <div class="cl-icon">✉</div>
+                <div>
+                  <div class="cl-label">EMAIL</div>
+                  <div class="cl-val">danish.athayan@gmail.com</div>
+                </div>
+              </a>
+              <a
+                href="https://wa.me/6281917121615"
+                class="contact-link"
+                target="_blank"
+              >
+                <div class="cl-icon">📱</div>
+                <div>
+                  <div class="cl-label">WHATSAPP</div>
+                  <div class="cl-val">+62 819-1712-1615</div>
+                </div>
+              </a>
+              <a
+                href="https://www.instagram.com/dns.athayan/"
+                target="_blank"
+                class="contact-link"
+              >
+                <div class="cl-icon" style="color: var(--green)">@</div>
+                <div>
+                  <div class="cl-label">INSTAGRAM / SOCIAL</div>
+                  <div class="cl-val">@dns.athayan</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="reveal">
+            <form class="contact-form">
+              <div class="form-group">
+                <label class="form-label">NAME</label>
+                <!-- Tambahkan name="name" sesuai dengan {{name}} di EmailJS -->
+                <input
+                  type="text"
+                  name="name"
+                  class="form-input"
+                  placeholder="your_name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">EMAIL</label>
+                <!-- Tambahkan name="email" sesuai dengan {{email}} di EmailJS -->
+                <input
+                  type="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="you@domain.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">MESSAGE</label>
+                <!-- Tambahkan name="message" sesuai dengan {{message}} di EmailJS -->
+                <textarea
+                  name="message"
+                  class="form-input"
+                  placeholder="Describe your inquiry or project..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="form-submit" id="submitBtn">
+                → SEND_MESSAGE
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-text">
+        © 2025 <span>Danish Athaya Natasurendra</span> · Crafted with precision.
+      </div>
+      <div class="footer-links">
+        <a href="mailto:danish.athayan@gmail.com">EMAIL</a>
+        <a href="https://wa.me/6281917121615" target="_blank">WHATSAPP</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
