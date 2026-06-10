@@ -260,13 +260,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================
-  // 9. RESEND CONFIG
+  // 9. WEB3FORMS CONFIG (Aman & Lancar untuk Frontend)
   // ==========================================
-  // PENTING: Ganti dengan API Key dari dashboard Resend milikmu (awalan re_...)
-  const RESEND_API_KEY = "re_8NA1aTAX_7bh6Gh8LKNrKH8mEYj1i8GwB";
+  // Buka https://web3forms.com -> Masukkan emailmu -> Kamu akan langsung dapat Key gratis lewat email
+  const WEB3FORMS_ACCESS_KEY = "34a18b69-687a-4664-b451-a2651691d149";
 
   // ==========================================
-  // 10. CONTACT FORM HANDLER (RESEND)
+  // 10. CONTACT FORM HANDLER (WEB3FORMS)
   // ==========================================
   function handleSubmit(e) {
     e.preventDefault();
@@ -282,35 +282,30 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.textContent = "> TRANSMITTING...";
     btn.disabled = true;
 
-    // Mengirim data ke API Resend
-    fetch("https://api.resend.com/emails", {
+    // Mengirim data ke Web3Forms (Aman dari CORS)
+    fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({
-        from: "Contact Form <onboarding@resend.dev>", // Gunakan domain terverifikasi milikmu jika ada
-        to: ["danish.athayan@gmail.com"],
-        subject: `New Message from ${nameEl.value}`,
-        html: `
-        <h3>Pesan Baru dari Kontak Website</h3>
-        <p><strong>Nama:</strong> ${nameEl.value}</p>
-        <p><strong>Email:</strong> ${emailEl.value}</p>
-        <p><strong>Pesan:</strong></p>
-        <p>${msgEl.value}</p>
-      `,
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: nameEl.value,
+        email: emailEl.value,
+        message: msgEl.value,
+        subject: `New Message from ${nameEl.value} (Portfolio)`,
       }),
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Resend API response error");
+          throw new Error("Web3Forms API response error");
         }
         return response.json();
       })
       .then(() => {
         btn.textContent = "> MESSAGE_SENT ✓";
-        btn.style.background = "var(--green)"; // Diubah ke green agar estetik tanda sukses
+        btn.style.background = "var(--green)"; // Efek sukses warna hijau kamu
         form.reset();
         setTimeout(() => {
           btn.textContent = "→ SEND_MESSAGE";
@@ -319,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
       })
       .catch((err) => {
-        console.error("Resend error:", err);
+        console.error("Form error:", err);
         btn.textContent = "> ERROR — TRY AGAIN";
         btn.style.background = "var(--red)";
         btn.disabled = false;
@@ -330,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Daftarkan Event Listener di paling akhir agar fungsi handleSubmit sudah siap dieksekusi
+  // Daftarkan Event Listener
   const contactForm = document.querySelector(".contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", handleSubmit);
