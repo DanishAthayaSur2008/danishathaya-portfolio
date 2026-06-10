@@ -260,13 +260,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================
-  // 9. NETLIFY SERVERLESS CONFIG
+  // 9. RESEND CONFIG
   // ==========================================
-  // API Key sekarang aman disimpan di dashboard Netlify, bukan di sini lagi!
-  const NETLIFY_FUNCTION_URL = "/.netlify/functions/send-email";
+  // PENTING: Ganti dengan API Key dari dashboard Resend milikmu (awalan re_...)
+  const RESEND_API_KEY = "re_8NA1aTAX_7bh6Gh8LKNrKH8mEYj1i8GwB";
 
   // ==========================================
-  // 10. CONTACT FORM HANDLER (NETLIFY + RESEND)
+  // 10. CONTACT FORM HANDLER (RESEND)
   // ==========================================
   function handleSubmit(e) {
     e.preventDefault();
@@ -282,21 +282,29 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.textContent = "> TRANSMITTING...";
     btn.disabled = true;
 
-    // Mengirim data ke Netlify Serverless Function kamu
-    fetch(NETLIFY_FUNCTION_URL, {
+    // Mengirim data ke API Resend
+    fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: nameEl.value,
-        email: emailEl.value,
-        message: msgEl.value,
+        from: "Contact Form <onboarding@resend.dev>", // Gunakan domain terverifikasi milikmu jika ada
+        to: ["danish.athayan@gmail.com"],
+        subject: `New Message from ${nameEl.value}`,
+        html: `
+        <h3>Pesan Baru dari Kontak Website</h3>
+        <p><strong>Nama:</strong> ${nameEl.value}</p>
+        <p><strong>Email:</strong> ${emailEl.value}</p>
+        <p><strong>Pesan:</strong></p>
+        <p>${msgEl.value}</p>
+      `,
       }),
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Serverless Function error");
+          throw new Error("Resend API response error");
         }
         return response.json();
       })
@@ -311,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
       })
       .catch((err) => {
-        console.error("Netlify Function error:", err);
+        console.error("Resend error:", err);
         btn.textContent = "> ERROR — TRY AGAIN";
         btn.style.background = "var(--red)";
         btn.disabled = false;
