@@ -291,15 +291,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
-
-        // Menggunakan template bawaan Web3Forms yang dijamin rapi & auto-render di Gmail
-        template_id: "table",
-
-        // Kustomisasi Judul & Nama Pengirim agar keren di Inbox Gmail
         from_name: `🤖 PORTFOLIO BOT`,
         subject: `⚡ [NEW TRANSMISSION] From ${nameEl.value}`,
-
-        // Kirim data sebagai objek terpisah, nanti otomatis disusun jadi tabel rapi oleh Web3Forms
         "Nama Pengirim": nameEl.value,
         Email: emailEl.value,
         "Isi Pesan": msgEl.value,
