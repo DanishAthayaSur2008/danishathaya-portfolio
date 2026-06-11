@@ -292,22 +292,22 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
 
-        // Mengaktifkan mode custom template agar Web3Forms mau menerima HTML buatan kita
-        template_id: "table",
+        // PENTING: Dua baris ini wajib ada agar Web3Forms mau me-render HTML di dalam pesan!
+        title: `⚡ [NEW TRANSMISSION] From ${nameEl.value}`,
+        is_html: "yes",
 
-        // Kustomisasi Judul & Nama Pengirim di Inbox Gmail
+        // Kustomisasi Nama Pengirim di Inbox Gmail
         from_name: `🤖 PORTFOLIO BOT`,
         subject: `⚡ [NEW TRANSMISSION] From ${nameEl.value}`,
 
-        // Menyusun halaman email estetik dengan format HTML & CSS Inline
-        // Semua teks di bawah ini akan di-render menjadi email dark mode yang super keren!
+        // Halaman email estetik bertema Dark Mode / Cyberpunk
         message: `
-        <div style="background-color: #0d1117; color: #c9d1d9; font-family: 'Courier New', Courier, monospace; padding: 20px; border: 1px solid #238636; border-radius: 8px; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2ea44f; border-bottom: 2px solid #238636; padding-bottom: 10px; margin-top: 0;">
+        <div style="background-color: #0d1117; color: #c9d1d9; font-family: 'Courier New', Courier, monospace; padding: 20px; border: 1px solid #238636; border-radius: 8px; max-width: 600px; margin: 0 auto; box-sizing: border-box;">
+          <h2 style="color: #2ea44f; border-bottom: 2px solid #238636; padding-bottom: 10px; margin-top: 0; font-size: 20px;">
             > INBOUND_MESSAGE_RECEIVED
           </h2>
           
-          <table style="width: 100%; border-collapse: collapse; margin-vertical: 20px;">
+          <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
             <tr>
               <td style="padding: 8px 0; color: #8b949e; width: 100px; font-weight: bold;">[SENDER]</td>
               <td style="padding: 8px 0; color: #58a6ff;">: ${nameEl.value}</td>
@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </table>
           
           <div style="background-color: #161b22; border-left: 4px solid #2ea44f; padding: 15px; margin-top: 15px; border-radius: 4px;">
-            <p style="margin: 0 0 8px 0; color: #8b949e; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">// TRANSMITTED_DATA:</p>
+            <p style="margin: 0 0 8px 0; color: #8b949e; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">// TRANSMITTED_DATA:</p>
             <p style="margin: 0; color: #f0f6fc; line-height: 1.6; white-space: pre-wrap;">${msgEl.value}</p>
           </div>
           
