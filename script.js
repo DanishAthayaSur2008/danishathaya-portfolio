@@ -292,46 +292,23 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
 
-        // PENTING: Dua baris ini wajib ada agar Web3Forms mau me-render HTML di dalam pesan!
-        title: `⚡ [NEW TRANSMISSION] From ${nameEl.value}`,
-        is_html: "yes",
+        // Menggunakan template bawaan Web3Forms yang dijamin rapi & auto-render di Gmail
+        template_id: "table",
 
-        // Kustomisasi Nama Pengirim di Inbox Gmail
+        // Kustomisasi Judul & Nama Pengirim agar keren di Inbox Gmail
         from_name: `🤖 PORTFOLIO BOT`,
         subject: `⚡ [NEW TRANSMISSION] From ${nameEl.value}`,
 
-        // Halaman email estetik bertema Dark Mode / Cyberpunk
-        message: `
-        <div style="background-color: #0d1117; color: #c9d1d9; font-family: 'Courier New', Courier, monospace; padding: 20px; border: 1px solid #238636; border-radius: 8px; max-width: 600px; margin: 0 auto; box-sizing: border-box;">
-          <h2 style="color: #2ea44f; border-bottom: 2px solid #238636; padding-bottom: 10px; margin-top: 0; font-size: 20px;">
-            > INBOUND_MESSAGE_RECEIVED
-          </h2>
-          
-          <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-            <tr>
-              <td style="padding: 8px 0; color: #8b949e; width: 100px; font-weight: bold;">[SENDER]</td>
-              <td style="padding: 8px 0; color: #58a6ff;">: ${nameEl.value}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #8b949e; font-weight: bold;">[EMAIL]</td>
-              <td style="padding: 8px 0; color: #58a6ff;">: <a href="mailto:${emailEl.value}" style="color: #58a6ff; text-decoration: none;">${emailEl.value}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #8b949e; font-weight: bold;">[TIME]</td>
-              <td style="padding: 8px 0; color: #79c0ff;">: ${new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta", dateStyle: "medium", timeStyle: "short" })} WIB</td>
-            </tr>
-          </table>
-          
-          <div style="background-color: #161b22; border-left: 4px solid #2ea44f; padding: 15px; margin-top: 15px; border-radius: 4px;">
-            <p style="margin: 0 0 8px 0; color: #8b949e; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">// TRANSMITTED_DATA:</p>
-            <p style="margin: 0; color: #f0f6fc; line-height: 1.6; white-space: pre-wrap;">${msgEl.value}</p>
-          </div>
-          
-          <p style="text-align: center; font-size: 10px; color: #8b949e; margin-top: 25px; border-top: 1px dashed #21262d; padding-top: 15px;">
-            © ${new Date().getFullYear()} Danish Athaya Portfolio • Powered by Serverless Frontend
-          </p>
-        </div>
-      `,
+        // Kirim data sebagai objek terpisah, nanti otomatis disusun jadi tabel rapi oleh Web3Forms
+        "Nama Pengirim": nameEl.value,
+        Email: emailEl.value,
+        "Isi Pesan": msgEl.value,
+        "Waktu Dikirim":
+          new Date().toLocaleString("id-ID", {
+            timeZone: "Asia/Jakarta",
+            dateStyle: "medium",
+            timeStyle: "short",
+          }) + " WIB",
       }),
     })
       .then((response) => {
